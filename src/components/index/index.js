@@ -14,7 +14,7 @@ const menu = (
             <Link rel="noopener noreferrer"  to="/index/upPwd">修改密码</Link>
     </Menu.Item>
     <Menu.Item>
-            <Link rel="noopener noreferrer"  to="/index/only">退出登录</Link>
+            <Link rel="noopener noreferrer"  to="/login-and-registration">退出登录</Link>
     </Menu.Item>
 </Menu>
 );
@@ -70,14 +70,12 @@ export class Index extends React.Component{
                                     <a href="">Application Center</a>
                                 </Breadcrumb.Item>
                             </Breadcrumb>
-                            <Router>
-                                <Switch>
-                                    <Route exact path="/index" component={require("../allData/allData").AllData}></Route>
-                                    <Route path="/index/allData" component={require("../allData/allData").AllData}></Route>
-                                    <Route path="/index/only" component={require("../only/only").Only}></Route>
-                                    <Route path="/index/upPwd" component={require("../upPwd/upPwd").UpPwd}></Route>
-                                </Switch>
-                            </Router>
+                            <Switch>
+                                <Route exact path="/index" component={require("../allData/allData").AllData}></Route>
+                                <Route path="/index/allData" component={require("../allData/allData").AllData}></Route>
+                                <Route path="/index/only" component={require("../only/only").Only}></Route>
+                                <Route path="/index/upPwd" component={require("../upPwd/upPwd").UpPwd}></Route>
+                            </Switch>
                         </Content>
                     </Layout>
                 </Layout>

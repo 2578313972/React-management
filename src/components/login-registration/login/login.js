@@ -22,7 +22,7 @@ export class Login extends React.Component{
             }
         }).then(res=>{
             console.log(res)
-            if(res.data === "Yes") this.props.history.replace("/index")
+            if(res.data === "Yes")this.props.history.replace("/index/only")
         })
     };
     nameVal=(e)=>{ //账号

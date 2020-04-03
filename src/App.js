@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router,Route,Redirect } from "react-router-dom";
+import { BrowserRouter as Router,Route } from "react-router-dom";
 
 import {Login_Register} from './components/login-registration/login-registration'
 import {Index} from './components/index/index'
@@ -17,7 +17,6 @@ export default class App extends React.Component{
       <Router>
         <Route path="/login-and-registration" component={Login_Register} />
         <Route path="/index" component={Index} />
-        {/* <Redirect to="/index" from="/" /> */}
       </Router>
     )
   }

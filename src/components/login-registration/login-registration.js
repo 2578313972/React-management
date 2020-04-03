@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router,Route} from "react-router-dom";
+import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
 
 import { Layout } from 'antd';
 import './login-registration.css';
@@ -28,8 +28,10 @@ export class Login_Register extends React.Component{
                     <Header>学生管理系统</Header>
                     <Content>
                         <Router>
-                            <Route exact path="/login-and-registration" component={Login}></Route>
-                            <Route path="/login-and-registration/register" component={Register}></Route>
+                            <Switch>
+                                <Route exact path="/login-and-registration" component={Login}></Route>
+                                <Route path="/login-and-registration/register" component={Register}></Route>
+                            </Switch>
                         </Router>
                     </Content>
                 </Layout>
