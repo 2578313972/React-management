@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router,Route,Redirect } from "react-router-dom";
+
+import {Login_Register} from './components/login-registration/login-registration'
+import {Index} from './components/index/index'
+
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component{
+  constructor(data){
+    super()
+  }
+  componentDidMount(){
+    // console.log(this.data)
+  }
+  render() {
+    return(
+      <Router>
+        <Route path="/login-and-registration" component={Login_Register} />
+        <Route path="/index" component={Index} />
+        {/* <Redirect to="/index" from="/" /> */}
+      </Router>
+    )
+  }
 }
-
-export default App;

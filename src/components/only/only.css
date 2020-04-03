@@ -1,0 +1,10 @@
+.only .box{display: flex;justify-content: center;margin-top: 50px;}
+.only .box>div:first-child{width: 10%;text-align: right;line-height: 35px;padding-right: 10px;}
+.only .box>div:last-child{width: 80%;}
+
+
+
+
+
+
+

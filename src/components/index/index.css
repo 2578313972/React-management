@@ -1,0 +1,13 @@
+.Index{height: 100%;}
+.Index .ant-layout{height: 100%;}
+.Index .ant-layout-header{padding-right: 0px;display: flex;justify-content: space-between;height: 50px;color: #fff;line-height: 50px;background-color: #3BAFDA;font-size: 18px;font-weight: 600;border-bottom: 1px solid #fff;}
+
+.Index .ant-dropdown-link.ant-dropdown-trigger{padding-right: 20px;height: 100%;display: inline-block;color: rgb(62, 90, 184) !important;}
+
+.Index .ant-avatar.ant-avatar-circle.ant-avatar-icon{margin-right: 5px;}
+
+
+.Index .ant-layout-sider-children{background-color: white;}
+
+
+

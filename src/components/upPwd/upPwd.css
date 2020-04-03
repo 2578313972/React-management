@@ -1,0 +1,10 @@
+.upPwd .box{display: flex;justify-content: center;margin-top: 50px;}
+.upPwd .box>div:first-child{width: 10%;text-align: right;line-height: 35px;padding-right: 10px;}
+.upPwd .box>div:last-child{width: 80%;}
+.upPwd .bun{text-align: center;margin-top: 15px;}
+
+
+
+
+
+
