@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from 'react-router-dom'
 
 import './login.css'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox,message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 export class Login extends React.Component{
     constructor(data){
@@ -21,8 +21,20 @@ export class Login extends React.Component{
               pwd: values.password
             }
         }).then(res=>{
-            console.log(res)
-            if(res.data === "Yes")this.props.history.replace("/index/only")
+            message.loading('正在为您检测……',1,()=>{
+                setTimeout(()=>{
+                    if(res.data === "Name_No"){
+                        message.warning('请输入正确的用户名!!!',3);
+                    }else if(res.data === "Pwd_No"){
+                        message.error('密码错误!',3);
+                    }else{
+                        message.success('登录成功！正在为您跳转……',1.5,()=>{
+                            sessionStorage.setItem("name",this.state.name)
+                            this.props.history.replace("/index")
+                        })
+                    }
+                },400)
+            })
         })
     };
     nameVal=(e)=>{ //账号

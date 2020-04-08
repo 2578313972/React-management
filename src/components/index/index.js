@@ -5,49 +5,50 @@ import { Layout,Avatar,Menu, Dropdown,SubMenu,Breadcrumb  } from 'antd';
 import './index.css'
 import { UserOutlined,DownOutlined } from '@ant-design/icons';
 const { Header , Sider, Content } = Layout;
-const menu = (
-<Menu>
-    <Menu.Item>
-            <Link rel="noopener noreferrer"  to="/index/only">全部成员</Link>
-    </Menu.Item>
-    <Menu.Item>
-            <Link rel="noopener noreferrer"  to="/index/upPwd">修改密码</Link>
-    </Menu.Item>
-    <Menu.Item>
-            <Link rel="noopener noreferrer"  to="/login-and-registration">退出登录</Link>
-    </Menu.Item>
-</Menu>
-);
+
 export class Index extends React.Component{
     constructor(props){
         super()
         this.state={
-            name:""
+            name:"",
+            route:'',
+            routeName:''
         }
     }
     componentDidMount(){
+        this.props.history.listen(route => {
+            let name = ""
+            if(route.pathname==="/index/allData") name = "全部成员"
+            if(route.pathname==="/index/only") name = "个人信息"
+            if(route.pathname==="/index/upPwd") name = "修改密码"
+            this.setState({routeName:name})
+        })
         console.log(this.props)
-        // Object.defineProperty(this.props.location,pathname,{
-            // get(){
-            //     return this.props.location[pathname]
-            // },
-            // set(newVal){
-            //     this.props.location[pathname] = newVal
-            //     console.log(5555555555555555555555555555555555)
-            // }
-        // })
-        // this.setState({
-        //     name:sessionStorage.getItem("name")
-        // }){}
+        this.setState({
+            name:sessionStorage.getItem("name")
+        })
+    }
+    menu(){
+        return  <Menu>
+                    <Menu.Item>
+                            <Link rel="noopener noreferrer"  to="/index/allData">全部成员</Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                            <Link rel="noopener noreferrer"  to="/index/upPwd">修改密码</Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                            <Link rel="noopener noreferrer"  to="/login-and-registration">退出登录</Link>
+                    </Menu.Item>
+                </Menu>
     }
     render(){
         return(
             <div className="Index">
                 <Layout>
                     <Header>
-                        <div>学生管理系统</div>
+                        <div onClick={()=>{this.props.history.replace("/index")}}>学生管理系统</div>
                         <div>
-                            <Dropdown overlayClassName="" overlay={menu}>
+                            <Dropdown overlayClassName="" overlay={this.menu}>
                                 <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
                                     <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />{this.state.name}
                                     <DownOutlined />
@@ -65,13 +66,11 @@ export class Index extends React.Component{
                         </Sider>
                         <Content>
                             <Breadcrumb>
-                                <Breadcrumb.Item>首页</Breadcrumb.Item>
-                                <Breadcrumb.Item>
-                                    <a href="">Application Center</a>
-                                </Breadcrumb.Item>
+                                <Breadcrumb.Item><Link to="/index">首页</Link></Breadcrumb.Item>
+                                {<Breadcrumb.Item>{this.state.routeName}</Breadcrumb.Item>}
                             </Breadcrumb>
                             <Switch>
-                                <Route exact path="/index" component={require("../allData/allData").AllData}></Route>
+                                <Route exact path="/index" component={require("../firData/firData").FirData}></Route>
                                 <Route path="/index/allData" component={require("../allData/allData").AllData}></Route>
                                 <Route path="/index/only" component={require("../only/only").Only}></Route>
                                 <Route path="/index/upPwd" component={require("../upPwd/upPwd").UpPwd}></Route>

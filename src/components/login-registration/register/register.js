@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import './register.css'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button,message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 
@@ -21,12 +21,17 @@ export class Register extends React.Component{
               pwd: values.password
             }
         }).then(res=>{
-            console.log(res)
-            if(res.data === "Yes"){
-                this.props.history.replace("/login-and-registration")
-            }else{
-                alert()
-            }
+            message.loading('正在为您检测……',1,()=>{
+                setTimeout(()=>{
+                    if(res.data === "No"){
+                        message.info('该账号已被注册!',3);
+                    }else{
+                        message.success('注册成功！正在为您跳转到登录页面……',1.5,()=>{
+                            this.props.history.replace("/login-and-registration")
+                        })
+                    }
+                },400)
+            })
         })
     };
     nameVal=(e)=>{ //账号
@@ -35,18 +40,6 @@ export class Register extends React.Component{
     }
     pwdVal=(e)=>{ // 密码
         this.setState({pwd:e.target.value},()=>console.log(this.state.pwd))
-    }
-    submit = () => {
-        axios.get("http://localhost:1020/register",{
-            params: {
-              name: this.state.name,
-              pwd: this.state.pwd
-            }
-        }).then(res=>{
-            if(res === "Yes"){
-                this.props.history.replace("/login-and-registration")
-            }
-        })
     }
     render(){
         return(
@@ -78,7 +71,7 @@ export class Register extends React.Component{
                     }),
                     ]}
                 >
-                    <Input.Password />
+                    <Input type="password" prefix={<LockOutlined className="site-form-item-icon" />}  placeholder="请确认您的密码!" />
                 </Form.Item>
 
                 <Form.Item>

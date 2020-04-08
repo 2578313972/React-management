@@ -18,7 +18,8 @@ export class AllData extends React.Component{
         }
     }
     componentDidMount(){
-        axios.get("http://localhost:1020/allData").then(res=>{
+        axios.get("http://120.77.99.3:1020/allData").then(res=>{
+            console.log(res)
              this.setState({data:res.data},()=>{
                 let bal = []
                 this.state.data.forEach((item,index)=>{
@@ -28,6 +29,8 @@ export class AllData extends React.Component{
                     showData:bal
                 })
              })
+        }).catch(err=>{
+            console.log(err)
         })
     }
     showConfirm = (e) => { //asdasdasdasd
@@ -42,11 +45,12 @@ export class AllData extends React.Component{
                     resolve(e)
                 },800+Math.random()*1000)
             }).then((e)=>{
-                axios.get(`http://localhost:1020/deleteData`,{
+                axios.get(`http://120.77.99.3:1020/deleteData`,{
                     params: {
                     name: e.Name
                     }
                 }).then(res=>{
+                    console.log(res)
                     that.componentDidMount()
                 })
             })

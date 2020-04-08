@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios'
-import { Input,Button } from 'antd';
+import { Input,Button,message } from 'antd';
 import "./upPwd.css"
 export class UpPwd extends React.Component{
     constructor(props){
@@ -21,6 +21,8 @@ export class UpPwd extends React.Component{
                 console.log(res)
                 setTimeout(() => {
                     sessionStorage.setItem("name",this.state.newName)
+                    message.success('修改成功！')
+                    this.props.history.go()
                     this.setState({iconLoading: false})
                 }, 800);
             })
